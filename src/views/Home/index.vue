@@ -1,13 +1,9 @@
 <script setup>
-import Avatar from "../../components/Avatar/test.vue";
-import Icon from "../../components/Icon/test.vue";
-import Empty from "../../components/Empty/test.vue";
+import SiteAside from "../../components/SiteAside/index.vue";
 </script>
 
 <template>
-  <Avatar />
-  <Icon />
-  <Empty />
+  <SiteAside />
 </template>
 
 <style scoped>

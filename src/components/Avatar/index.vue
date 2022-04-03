@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 defineProps({
   src: String,
   size: {
@@ -7,16 +6,12 @@ defineProps({
     default: 150,
   },
 });
-const numRef = ref(0);
-const increase = () => {
-  numRef.value++;
-};
 </script>
 
 <template>
   <div>
     <img :src="src" :style="{ height: size + 'px', width: size + 'px' }" />
-    <button @click="increase">{{ numRef }}</button>
+    <p>薛巨鹏的小窝窝</p>
   </div>
 </template>
 
