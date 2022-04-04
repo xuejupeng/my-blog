@@ -1,10 +1,7 @@
 <script setup>
-import SiteAside from "../../components/SiteAside/index.vue";
 </script>
 
-<template>
-  <SiteAside />
-</template>
+<template>首页</template>
 
 <style scoped>
 </style>
