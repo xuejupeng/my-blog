@@ -22,15 +22,13 @@
   display: flex;
   .menu {
     flex: 0 0 200px;
-    border: 1px solid;
   }
   .center {
-    flex: 1 1 auto;
-    border: 1px solid;
+    flex: 1 1 100%;
+    overflow-y: hidden;
   }
   .right {
-    flex: 0 0 250px;
-    border: 1px solid;
+    flex: 1 1 auto;
   }
 }
 </style>
