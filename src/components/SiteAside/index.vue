@@ -20,7 +20,7 @@ import Avatar from "../Avatar/index.vue";
 .site-aside-wrap {
   width: 200px;
   height: 100vh;
-  background: #000;
+  background: #202020;
   padding: 20px 0;
   overflow: auto;
   box-sizing: border-box;

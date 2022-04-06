@@ -8,5 +8,12 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     outDir: 'docs',
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: "http://test.my-site.com"
+      }
+    }
   }
 })
