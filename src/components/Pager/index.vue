@@ -54,14 +54,26 @@ const page = computed(() => {
 //抛出页面的点击事件
 const emit = defineEmits(["changePage"]);
 const handleClick = (page) => {
+  if (page < 1) {
+    page = 1;
+    return;
+  }
+  if (page > pageTotal.value) {
+    page = pageTotal.value;
+    return;
+  }
   emit("changePage", page);
 };
 </script>
 
 <template>
   <div class="pager-wrap">
-    <span @click="handleClick(1)">|&lt;&lt;</span>
-    <span @click="handleClick(current - 1)">&lt;&lt;</span>
+    <span :class="{ disabled: current === 1 }" @click="handleClick(1)"
+      >|&lt;&lt;</span
+    >
+    <span :class="{ disabled: current === 1 }" @click="handleClick(current - 1)"
+      >&lt;&lt;</span
+    >
     <span
       :class="{ active: current === item }"
       v-for="(item, i) in page"
@@ -87,6 +99,12 @@ const handleClick = (page) => {
     }
     &.active {
       color: #f40;
+      cursor: text;
+      font-weight: bold;
+    }
+    &.disabled {
+      cursor: not-allowed;
+      color: gray;
     }
   }
 }

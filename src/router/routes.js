@@ -3,6 +3,7 @@ import About from '../views/About/index.vue';
 import Blog from '../views/Blog/index.vue';
 import Project from '../views/Project/index.vue';
 import Message from '../views/Message/index.vue';
+import Detail from '../views/Blog/detail.vue';
 
 const routes = [{
         path: '/',
@@ -22,7 +23,12 @@ const routes = [{
     {
         path: '/blog/:id*',
         name: 'Blog',
-        component: Blog
+        component: Blog,
+    },
+    {
+        path: '/blog/detail/:id*',
+        name: 'BlogDetail',
+        component: Detail,
     },
     {
         path: '/message',
