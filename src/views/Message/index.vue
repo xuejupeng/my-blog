@@ -1,11 +1,16 @@
 <script setup>
-import Pager from "../../components/Pager/test.vue";
+import Comment from "../../components/Comment/index.vue";
 </script>
 
 <template>
-  <div>留言板</div>
-  <Pager />
+  <div class="comment-wrap">
+    <Comment />
+  </div>
 </template>
 
 <style scoped>
+.comment-wrap {
+  height: 100%;
+  overflow: scroll;
+}
 </style>

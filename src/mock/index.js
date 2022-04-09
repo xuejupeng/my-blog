@@ -1,70 +1,70 @@
 import mock, {
-    Random
+  Random
 } from 'mockjs';
 import qs from 'querystring';
 
 mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (options) {
-    const query = qs.parse(options.url);
-    return mock.mock({
-        'total|1000-2000': 1000,
-        [`data|${query.limit || 10}`]: [{
-            'id|+1': 1,
-            "title|2-5": '@ctitle',
-            date: '@date',
-            "browse|1-500": 500,
-            "comment|1-300": 300,
-            "class|1-15": 10,
-            "content": '@csentence(100, 120)',
-            'img|1': ["@image(200x130, @color, #fff, @csentence)", null]
-        }]
-    })
+  const query = qs.parse(options.url);
+  return mock.mock({
+    'total|1000-2000': 1000,
+    [`data|${query.limit || 10}`]: [{
+      'id|+1': 1,
+      "title|2-5": '@ctitle',
+      date: '@date',
+      "browse|1-500": 500,
+      "comment|1-300": 300,
+      "class|1-15": 10,
+      "content": '@csentence(100, 120)',
+      'img|1': ["@image(200x130, @color, #fff, @csentence)", null]
+    }]
+  })
 
 })
 
 mock.mock(/^\/api\/blog\/[^/]+$/, 'get', {
-    data: {
-        id: "1",
-        title: "CORS跨域方案详解",
-        category: {
-            "id|1-10": 1,
-            name: "分类@id",
-        },
-        description: "@cparagraph(1, 10)",
-        "scanNumber|0-10000": 0,
-        "commentNumber|0-100": 0,
-        createDate: "@date('T')",
-        toc: [{
-                name: "概述",
-                anchor: "article-md-title-1"
-            },
-            {
-                name: "简单请求",
-                anchor: "article-md-title-2",
-                children: [{
-                        name: "简单请求的判定",
-                        anchor: "article-md-title-3"
-                    },
-                    {
-                        name: "简单请求的交互规范",
-                        anchor: "article-md-title-4"
-                    },
-                ],
-            },
-            {
-                name: "需要预检的请求",
-                anchor: "article-md-title-5",
-            },
-            {
-                name: "附带身份凭证的请求",
-                anchor: "article-md-title-6",
-            },
-            {
-                name: "一个额外的补充",
-                anchor: "article-md-title-7",
-            },
+  data: {
+    id: "1",
+    title: "CORS跨域方案详解",
+    category: {
+      "id|1-10": 1,
+      name: "分类@id",
+    },
+    description: "@cparagraph(1, 10)",
+    "scanNumber|0-10000": 0,
+    "commentNumber|0-100": 0,
+    createDate: "@date('T')",
+    toc: [{
+        name: "概述",
+        anchor: "article-md-title-1"
+      },
+      {
+        name: "简单请求",
+        anchor: "article-md-title-2",
+        children: [{
+            name: "简单请求的判定",
+            anchor: "article-md-title-3"
+          },
+          {
+            name: "简单请求的交互规范",
+            anchor: "article-md-title-4"
+          },
         ],
-        'thumb|1': [Random.image('250x180', '#50B347', '#FFF', 'randomImage'), null],
-        htmlContent: `<blockquote>
+      },
+      {
+        name: "需要预检的请求",
+        anchor: "article-md-title-5",
+      },
+      {
+        name: "附带身份凭证的请求",
+        anchor: "article-md-title-6",
+      },
+      {
+        name: "一个额外的补充",
+        anchor: "article-md-title-7",
+      },
+    ],
+    'thumb|1': [Random.image('250x180', '#50B347', '#FFF', 'randomImage'), null],
+    htmlContent: `<blockquote>
   <p>阅读本文，你需要首先知道：</p><ol>
   <li>浏览器的同源策略</li>
   <li>跨域问题</li>
@@ -252,15 +252,29 @@ mock.mock(/^\/api\/blog\/[^/]+$/, 'get', {
     <span class="hljs-attr">credentials</span>: <span class="hljs-string">"include"</span>
   })</code></pre>
   <p>这样一来，该跨域的ajax请求就是一个<em>附带身份凭证的请求</em></p><p>当一个请求需要附带cookie时，无论它是简单请求，还是预检请求，都会在请求头中添加<code>cookie</code>字段</p><p>而服务器响应时，需要明确告知客户端：服务器允许这样的凭据</p><p>告知的方式也非常的简单，只需要在响应头中添加：<code>Access-Control-Allow-Credentials: true</code>即可</p><p>对于一个附带身份凭证的请求，若服务器没有明确告知，浏览器仍然视为跨域被拒绝。</p><p>另外要特别注意的是：<strong>对于附带身份凭证的请求，服务器不得设置 <code>Access-Control-Allow-Origin 的值为*</code></strong>。这就是为什么不推荐使用*的原因</p><h1 id="article-md-title-7">一个额外的补充</h1><p>在跨域访问时，JS只能拿到一些最基本的响应头，如：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma，如果要访问其他头，则需要服务器设置本响应头。</p><p><code>Access-Control-Expose-Headers</code>头让服务器把允许浏览器访问的头放入白名单，例如：</p><pre><code>Access-Control-Expose-Headers: authorization, a, b</code></pre><p>这样JS就能够访问指定的响应头了。</p>`,
-    }
+  }
 })
 
 
-const classData = mock.mock('/api/class', 'get', function () {
-    return mock.mock({
-        'data|12': [{
-            'class|+1': 1,
-            'num|1-500': 100,
-        }]
-    })
+mock.mock('/api/class', 'get', function () {
+  return mock.mock({
+    'data|12': [{
+      'class|+1': 1,
+      'num|1-500': 100,
+    }]
+  })
+})
+
+mock.mock('/api/message', 'get', {
+  "data|50-100": [{
+    name: '@cname',
+    date: '@datetime',
+    content: '@cparagraph',
+    "avatar|1": [
+      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
+      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
+      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
+      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+    ],
+  }]
 })
