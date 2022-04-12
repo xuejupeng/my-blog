@@ -266,7 +266,8 @@ mock.mock('/api/class', 'get', function () {
 })
 
 mock.mock('/api/message', 'get', {
-  "data|50-100": [{
+  "total|50-100": 0,
+  "data|10": [{
     name: '@cname',
     date: '@datetime',
     content: '@cparagraph',

@@ -11,10 +11,11 @@ defineProps({
     default: 0,
   },
 });
+
 </script>
 
 <template>
-  <div class="comment">
+  <div class="comment" ref='commentRef'>
     <div class="msg">留言板（{{ total }}）</div>
     <div class="box" v-for="(item, i) in comment" :key="i">
       <div class="img">

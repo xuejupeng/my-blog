@@ -49,8 +49,6 @@ const handleSubmit = () => {
 <style scoped lang='less'>
 .input-wrap {
   width: 60%;
-  height: 100%;
-  margin: 30px auto;
   .content {
     height: 270px;
   }

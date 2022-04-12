@@ -4,6 +4,7 @@ import { ref, computed, watch } from "vue";
 import Layout from "../../components/Layout/index.vue";
 import "highlight.js/styles/github.css";
 import "../../assets/less/mackdown.less";
+import Comment from '../../components/Comment/index.vue';
 
 const dataRef = ref([]);
 const hashRef = ref("");
@@ -63,6 +64,7 @@ const handleChange = (e) => {
           <span> 分类：{{ dataRef.id }} </span>
         </div>
         <div v-html="dataRef.htmlContent" class="markdown-body"></div>
+      <Comment/>
       </div>
     </template>
     <template v-slot:right>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import { getBlogData, getBlogClass } from "../../api/getBlogData";
 import Layout from "../../components/Layout/index.vue";
 import Pager from "../../components/Pager/index.vue";
@@ -18,20 +18,16 @@ const router = useRouter();
 const route = useRoute();
 
 //关于文章
-const setData = onBeforeMount(() => {
-  getBlogData(route.query.page || 1, route.query.limit || 10).then((res) => {
+ getBlogData(route.query.page || 1, route.query.limit || 10).then((res) => {
     current.value = +route.query.page || 1;
     limitRef.value = +route.query.limit || 10;
     blogListRef.value = res.data.data;
     blogTotal.value = res.data.total;
   });
-});
 
-const setBlogClass = onBeforeMount(() => {
   getBlogClass().then((res) => {
     blogClassRef.value = res.data.data;
   });
-});
 
 const blogTotalRef = computed(() => {
   return blogClassRef.value.reduce((prev, next) => {
@@ -45,14 +41,24 @@ const blogClass = computed(() => {
 
 const handleClass = (i) => {
   classIndex.value = i;
-  setData();
+  getBlogData(route.query.page || 1, route.query.limit || 10).then((res) => {
+    current.value = +route.query.page || 1;
+    limitRef.value = +route.query.limit || 10;
+    blogListRef.value = res.data.data;
+    blogTotal.value = res.data.total;
+  });
   router.push({ query: { id: i } });
 };
 
 //关于页面
 const handlePage = (page) => {
   current.value = page;
-  setData();
+  getBlogData(route.query.page || 1, route.query.limit || 10).then((res) => {
+    current.value = +route.query.page || 1;
+    limitRef.value = +route.query.limit || 10;
+    blogListRef.value = res.data.data;
+    blogTotal.value = res.data.total;
+  });
   blogRef.value.scrollTop = 0;
   router.push({ query: { page: current.value, limit: limitRef.value } });
 };
