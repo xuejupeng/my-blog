@@ -3,7 +3,7 @@
 
 <template>
   <div class='my-about'>
-    <h1>我就是我不一样的烟火</h1>
+    <h1>我就是我 不一样的烟火</h1>
     <h2>I am my different fireworks</h2>
   </div>
 </template>

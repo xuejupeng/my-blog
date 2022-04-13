@@ -279,3 +279,14 @@ mock.mock('/api/message', 'get', {
     ],
   }]
 })
+
+mock.mock('/api/project', 'get', {
+  "data|20": [
+    {
+      'img': ["@image(200x130, @color, #fff, @csentence)"],
+      "title|2-5": '@ctitle',
+      content: '@csentence(100, 120)',
+      'isGithub|1': [true, false],
+    }
+  ],
+})
